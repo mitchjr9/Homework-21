@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.5;
 
 import "./KaseiCoin.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/Crowdsale.sol";
@@ -8,9 +8,8 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5
 // Have the KaseiCoinCrowdsale contract inherit the following OpenZeppelin:
 // * Crowdsale
 // * MintedCrowdsale
-contract KaseiCoinCrowdsale { // UPDATE THE CONTRACT SIGNATURE TO ADD INHERITANCE
     
-    // Provide parameters for all of the features of your crowdsale, such as the `rate`, `wallet` for fundraising, and `token`.
+// Provide parameters for all of the features of your crowdsale, such as the `rate`, `wallet` for fundraising, and `token`.
 
 contract KaseiCoinCrowdsale is Crowdsale, MintedCrowdsale {
     constructor(
@@ -18,19 +17,13 @@ contract KaseiCoinCrowdsale is Crowdsale, MintedCrowdsale {
         address payable wallet,
         KaseiCoin token
     )
-        Crowdsale(rate, wallet, token)
-        public
-    {
+        public Crowdsale(rate, wallet, token){}
         // constructor body can stay empty
-    }
-    public Crowdsale(rate, wallet, token)
-    {
-        // constructor body can stay empty
-    }
+}
 
 contract KaseiCoinCrowdsaleDeployer {
     // Create an `address public` variable called `kasei_token_address`.
-    address public kasei_coin_address;
+    address public kasei_token_address;
     // Create an `address public` variable called `kasei_crowdsale_address`.
     address public kasei_crowdsale_address;
 
@@ -48,7 +41,7 @@ contract KaseiCoinCrowdsaleDeployer {
         kasei_token_address = address(token);
 
         // Create a new instance of the `KaseiCoinCrowdsale` contract
-       KaseiCoinCrowdsale kasei_crowdsale = new KaseiCoin(1, wallet, token);
+        KaseiCoinCrowdsale kasei_crowdsale = new KaseiCoinCrowdsale(1, wallet, token);
             
         // Assign the `KaseiCoinCrowdsale` contract’s address to the `kasei_crowdsale_address` variable.
         kasei_crowdsale_address = address(kasei_crowdsale);
@@ -60,4 +53,3 @@ contract KaseiCoinCrowdsaleDeployer {
         token.renounceMinter();
     }
 }
-*/
