@@ -11,7 +11,7 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5
 contract KaseiCoinCrowdsale { // UPDATE THE CONTRACT SIGNATURE TO ADD INHERITANCE
     
     // Provide parameters for all of the features of your crowdsale, such as the `rate`, `wallet` for fundraising, and `token`.
-    constructor(
+
 contract KaseiCoinCrowdsale is Crowdsale, MintedCrowdsale {
     constructor(
         uint rate,
@@ -23,12 +23,11 @@ contract KaseiCoinCrowdsale is Crowdsale, MintedCrowdsale {
     {
         // constructor body can stay empty
     }
-}    ) public Crowdsale(rate, wallet, token) {
-        // constructor can stay empty
+    public Crowdsale(rate, wallet, token)
+    {
+        // constructor body can stay empty
     }
-}
 
-/*
 contract KaseiCoinCrowdsaleDeployer {
     // Create an `address public` variable called `kasei_token_address`.
     address public kasei_coin_address;
